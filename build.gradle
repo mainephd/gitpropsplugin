@@ -1,3 +1,18 @@
+// First, apply the publishing plugin
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "com.gradle.publish:plugin-publish-plugin:0.9.1"
+  }
+}
+
+apply plugin: "com.gradle.plugin-publish"
+
+
 apply plugin: 'groovy'
 
 dependencies {
@@ -17,10 +32,24 @@ repositories {
 group = 'com.homedepot.di.dl'
 version = '1.0-SNAPSHOT'
 
+pluginBundle {
+  website = 'http://www.gradle.org/'
+  vcsUrl = 'https://github.com/gradle/gradle'
+  description = 'Creates properties for spring cloud'
+  tags = ['properties', 'spring cloud']
+
+  plugins {
+    SpringPropsPlugin {
+      id = 'com.homedepot.di.dl'
+      displayName = 'Spring Properties Plugin'
+    }
+  }
+}
+
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: uri('../repo'))
+            repository(url: uri('../../repo'))
         }
     }
 }
