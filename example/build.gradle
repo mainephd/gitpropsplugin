@@ -1,0 +1,57 @@
+buildscript {
+    ext{
+        springBootVersion = '1.2.6.RELEASE'
+        jarName =  project.name
+    }
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("gradle.plugin.com.homedepot:GitPropsPlugin:1.0.6")
+    }
+}
+
+ext.baseVersion = '1.0.0'
+
+
+apply plugin: 'com.homedepot.gitprops'
+apply plugin: 'spring-boot'
+apply plugin: 'java'
+
+gitprops {
+  project.version = "${project.ext.baseVersion}.${lastCommit}"
+}
+
+jar {
+        baseName = project.name
+        version =  project.version
+}
+
+task filter2(type: Copy) {
+	from 'configs'
+        into 'build/resources/main/cf'
+        expand(project.properties)
+}
+
+processResources {
+	expand(project.properties)
+}
+
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-starter-parent:1.0.0.RELEASE'
+    }
+}
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-test"
+    compile "org.springframework.boot:spring-boot-actuator"
+
+    testCompile "org.springframework.boot:spring-boot-starter-test"
+}
+
+project.tasks.jar.dependsOn('gitprops')

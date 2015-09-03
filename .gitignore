@@ -1,2 +1,5 @@
+userHome
 .gradle/
 build/
+.idea
+gradle.properties

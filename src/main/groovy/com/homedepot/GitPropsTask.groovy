@@ -1,11 +1,16 @@
-package com.homedepot.di.dl
+package com.homedepot
 
+import org.ajoberstar.grgit.Grgit
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 
-class SpringPropsTask extends DefaultTask {
+/* significant simplification based on article by Lieven Doclo
+ * http://www.insaneprogramming.be/blog/2014/08/15/spring-boot-info-git/
+ */
 
-    def git = org.ajoberstar.grgit.Grgit.open(project.file('.'))
+class GitPropsTask extends DefaultTask {
+
+    def git = Grgit.open(dir: project.projectDir)
     def lastCommit = git.head().abbreviatedId;
     def gitProps = new Properties();
 
