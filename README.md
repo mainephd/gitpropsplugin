@@ -24,7 +24,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath("com.homedepot.gitprops:GitPropsPlugin:1.0.6")
+        classpath("com.homedepot.gitprops:GitPropsPlugin:1.0.8")
     }
 }
 apply plugin: 'com.homedepot.gitprops'

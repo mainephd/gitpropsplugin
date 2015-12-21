@@ -12,7 +12,7 @@ buildscript {
 }
 
 plugins {
-    id "com.jfrog.bintray" version "1.3.1"
+    id "com.jfrog.bintray" version "1.4"
 }
 
 allprojects {
@@ -29,7 +29,7 @@ apply plugin: 'java'
 dependencies {
     compile gradleApi()
     compile localGroovy()
-    compile 'org.ajoberstar:grgit:1.1.0'
+    compile 'org.ajoberstar:grgit:1.4.1'
 }
 
 repositories {
@@ -55,7 +55,7 @@ artifacts {
 }
 
 group = 'com.homedepot.gitprops'
-version = '1.0.7'
+version = '1.0.8'
 
 dependencies {
     testCompile 'junit:junit:4.12'
@@ -131,7 +131,7 @@ bintray {
         publications = ['mavenJava']
         vcsUrl = 'https://github.com/homedepot/gitpropsplugin'
         version {
-                name = '1.0.7'
+                name = '1.0.8'
                 desc = 'Creates git properties file for spring boot'
                 released  = new Date()
                 attributes = ['gradle-plugin': 'com.homedepot.gitprops']

@@ -10,7 +10,7 @@ import org.gradle.api.tasks.TaskAction
 
 class GitPropsTask extends DefaultTask {
 
-    def git = Grgit.open(dir: project.rootDir ?: project.projectDir)
+    def git = Grgit.open()
     def lastCommit = git.head().abbreviatedId;
     def gitProps = new Properties();
 
