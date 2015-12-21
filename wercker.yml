@@ -1,0 +1,27 @@
+box: java
+# Build definition
+build:
+  # The steps that will be executed on build
+  steps:
+    - script:
+        name: show base information
+        code: |
+          ./gradlew -v
+          javac -version
+    - script:
+            name: run tests
+            code: |
+              ./gradlew --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR test
+    - script:
+            name: run build
+            code: |
+              ./gradlew --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR build
+
+deploy:
+  steps:
+    - script:
+            name: upload to bintray
+            code: |
+                ./gradlew --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR bintrayUpload
+                echo 'Upload to bintray completed'
+

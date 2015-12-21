@@ -1,5 +1,7 @@
 # gitprops
 
+[![wercker status](https://app.wercker.com/status/c3466a183bdb4d2207ac4e3aba780dc1/m "wercker status")](https://app.wercker.com/project/bykey/c3466a183bdb4d2207ac4e3aba780dc1)
+
 ## What is it?
 
 gitprops is a [Gradle](http://gradle.org) plugin:
@@ -42,4 +44,3 @@ Significant simplification of original plugin based on [article](http://www.insa
 
 * add environment sanity checks (git installed, in a git repository, etc)
 * add additional error messages (windows specific problems)
-* add Wercker

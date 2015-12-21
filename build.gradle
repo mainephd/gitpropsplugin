@@ -121,9 +121,8 @@ publishing {
 }
 
 bintray {
-    user = {bintray.user}
-    key = {bintray.key}
-    //put these in grade.properties
+    user = "$System.env.bintray_user"
+    key = "${System.env.bintray_key}"
      pkg {
         repo = 'maven'
         name = 'gitpropsplugin'
