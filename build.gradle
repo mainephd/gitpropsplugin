@@ -4,14 +4,6 @@ buildscript {
     maven {
       url "https://plugins.gradle.org/m2/"
     }
-    maven {
-	// replace this with your own artifactory location
-        url 'http://10.12.161.83:8081/artifactory/plugins-release'
-        credentials {
-            username = "${artifactory_user}"
-            password = "${artifactory_password}"
-        }
-     }
   }
   dependencies {
     classpath "com.gradle.publish:plugin-publish-plugin:0.9.1"
@@ -63,7 +55,7 @@ artifacts {
 }
 
 group = 'com.homedepot.gitprops'
-version = '1.0.6'
+version = '1.0.7'
 
 dependencies {
     testCompile 'junit:junit:4.12'
@@ -100,11 +92,11 @@ publishing {
                     resolveStrategy = Closure.DELEGATE_FIRST
                     name 'gitprops'
                     description 'Creates git properties file for spring boot'
-                    url 'https://github.com/TomGTHD/gitpropsplugin'
+                    url 'https://github.com/homedepot/gitpropsplugin'
                     scm {
-                        url 'https://github.com/TomGTHD/gitpropsplugin'
-                        connection 'scm:git:git://github.com/TomGTHD/gitpropsplugin.git'
-                        developerConnection 'scm:git:ssh:git@github.com:TomGTHD/gitpropsplugin.git'
+                        url 'https://github.com/homedepot/gitpropsplugin'
+                        connection 'scm:git:git://github.com/homedepot/gitpropsplugin.git'
+                        developerConnection 'scm:git:ssh:git@github.com:homedepot/gitpropsplugin.git'
                     }
                     licenses {
                         license {
@@ -115,7 +107,7 @@ publishing {
                     }
                     developers {
                         developer {
-                            id 'TomGTHD'
+                            id 'gambtho'
                             name 'Thomas Gamble'
                             email 'Thomas_Gamble@homedepot.com'
                         }
@@ -128,47 +120,18 @@ publishing {
     }
 }
 
-
-
-artifactory {
-    contextUrl = "${artifactory_contextUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
-    publish {
-        repository {
-            repoKey = 'libs-release-local'
-            username = "${artifactory_user}"
-            password = "${artifactory_password}"
-            maven = true
-
-        }
-        defaults {
-            publications ('mavenJava')
-            publishArtifacts = true
-            publishPom = true
-        }
-    }
-    resolve {
-        repository {
-            repoKey = 'libs-release'
-            username = "${artifactory_user}"
-            password = "${artifactory_password}"
-            maven = true
-
-        }
-    }
-}
-
 bintray {
-    user = "${bintray_user}"
-    key = "${bintray_key}"
+    user = {bintray.user}
+    key = {bintray.key}
+    //put these in grade.properties
      pkg {
         repo = 'maven'
         name = 'gitpropsplugin'
-        userOrg = "${bintray_user}"
         licenses = ['Apache-2.0']
         publications = ['mavenJava']
-        vcsUrl = 'https://github.com/TomGTHD/gitpropsplugin'
+        vcsUrl = 'https://github.com/homedepot/gitpropsplugin'
         version {
-                name = '1.0.6'
+                name = '1.0.7'
                 desc = 'Creates git properties file for spring boot'
                 released  = new Date()
                 attributes = ['gradle-plugin': 'com.homedepot.gitprops']

@@ -1,5 +1,5 @@
-userHome
 .gradle/
 build/
+GitPropsPlugin.iml
 .idea
 gradle.properties
