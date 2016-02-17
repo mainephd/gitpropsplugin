@@ -55,7 +55,7 @@ artifacts {
 }
 
 group = 'com.homedepot.gitprops'
-version = '1.0.8'
+version = '1.0.9'
 
 dependencies {
     testCompile 'junit:junit:4.12'
@@ -130,7 +130,7 @@ bintray {
         publications = ['mavenJava']
         vcsUrl = 'https://github.com/homedepot/gitpropsplugin'
         version {
-                name = '1.0.8'
+                name = '1.0.9'
                 desc = 'Creates git properties file for spring boot'
                 released  = new Date()
                 attributes = ['gradle-plugin': 'com.homedepot.gitprops']

@@ -30,7 +30,9 @@ class GitPropsTask extends DefaultTask {
                    , "git.commit.user.email"   : git.head().author.email
                    , "git.commit.message"      : git.head().shortMessage
                    , "git.commit.time"         : git.head().date.toString()
-                   , "git.branch"              : git.branch.current.name]
+                   , "git.branch"              : git.branch.current.name
+                   , "git.branch.fullName"     : git.branch.current.fullName
+        ]
         gitProps.putAll(map)
         gitProps.store(file.newWriter(), "")
         } catch (e) {
